@@ -12,16 +12,24 @@ export function ClientRequest() {
     ProgramID: '',
   });
 
+  const tuTokenJWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6IjlGNEFBMEU3LTVBNUYtMTFFRS1CNTk3LURDODVERUIxQkU0NCIsIkZ1bGxOYW1lIjoiQ2FybG9zIEFsYmVydG8gRGVsZ2FkbyBHYWxlYW5vIiwiRW1haWwiOiJjYXJsb3MuZGVsZ2Fkby5nYWxlYW5vQGNvcnJlb3VuaXZhbGxlLmVkdS5jbyIsIlBhc3N3b3JkIjoiJDJiJDEyJGtKSmFiVFlNM0podXViaW1QWGcudy5BUklrbWQyaXA1QWc5b01scS4wQ0lLTnhqR0I0WDJ5IiwiUGhvbmUiOiIxMjM0NTY3ODkwIiwiUm9sZSI6IlN0dWRlbnQiLCJpYXQiOjE2OTYzNjAxNDl9.LgkDjqESMyaSjUU5RxCm7zqYhb8ZTIP2NSW7QOWnKFY';
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Realiza una solicitud POST al servidor para crear la solicitud
+  
+    const requestData = {
+      ...request,
+      ClassroomID: Number(request.ClassroomID), // Convertir a número
+      ProgramID: Number(request.ProgramID), // Convertir a número
+      // Si necesitas ajustar el formato de las fechas, puedes hacerlo aquí
+    };
+  
     fetch('http://localhost:1234/requests', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${tuTokenJWT}`
       },
-      body: JSON.stringify(request),
+      body: JSON.stringify(requestData), // Usa requestData en lugar de request
     })
       .then((response) => response.json())
       .then((data) => {
