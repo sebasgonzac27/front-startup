@@ -7,6 +7,10 @@ import { Users } from './pages/Users';
 import { ClientView } from './pages/ClientView';
 import { ClientRequest } from './pages/ClientRequest';
 import { DashboardRequest } from './pages/DashboardRequest';
+import { Campuses } from './pages/Campuses';
+import { Classrooms } from './pages/Classrooms';
+import { Types } from './pages/Types';
+
 function App() {
 
   return (
@@ -17,9 +21,9 @@ function App() {
         <Route path='/register' element={<Registration/>}/>
         <Route path='/admin' element={<Dashboard/>}/>
         <Route path='/admin/users' element={<Users/>}/>
-        <Route path='/admin/campuses' element={<h1>Campuses</h1>}/>
-        <Route path='/admin/classrooms' element={<h1>Classrooms</h1>}/>
-        <Route path='/admin/types' element={<h1>Types</h1>}/>
+        <Route path='/admin/campuses' element={<Campuses/>}/>
+        <Route path='/admin/classrooms' element={<Classrooms/>}/>
+        <Route path='/admin/types' element={<Types/>}/>
         <Route path='/admin/devices' element={<h1>Devices</h1>}/>
         <Route path='/admin/requests' element={<h1>Requests</h1>}/>
 
