@@ -12,6 +12,7 @@
   "dependencies": {
     "bootstrap": "5.3.2",
     "boxicons": "2.1.4",
+    "date-fns": "^2.30.0",
     "dotenv": "16.3.1",
     "localforage": "1.10.0",
     "match-sorter": "6.3.1",
@@ -19,8 +20,8 @@
     "react-bootstrap": "2.9.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.16.0",
-    "sort-by": "1.2.0",
-    "sweetalert2": "11.7.31",
+    "sort-by": "^0.0.2",
+    "sweetalert2": "^11.6.13",
     "sweetalert2-react-content": "5.0.7"
   },
   "devDependencies": {

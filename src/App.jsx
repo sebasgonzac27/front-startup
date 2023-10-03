@@ -4,6 +4,9 @@ import { Login } from './pages/Login';
 import { Registration } from './pages/Registration';
 import { Dashboard } from './pages/Dashboard';
 import { Users } from './pages/Users';
+import { ClientView } from './pages/ClientView';
+import { ClientRequest } from './pages/ClientRequest';
+import { DashboardRequest } from './pages/DashboardRequest';
 function App() {
 
   return (
@@ -19,6 +22,10 @@ function App() {
         <Route path='/admin/types' element={<h1>Types</h1>}/>
         <Route path='/admin/devices' element={<h1>Devices</h1>}/>
         <Route path='/admin/requests' element={<h1>Requests</h1>}/>
+
+        <Route path='/client' element={<ClientView/>}/>
+        <Route path='/client/requests' element={<DashboardRequest/>}/>
+        <Route path='/client/create-request' element={<ClientRequest/>}/>
         <Route path='/*' element={<h1>404 not found</h1>}/>
       </Routes>
       </BrowserRouter>
