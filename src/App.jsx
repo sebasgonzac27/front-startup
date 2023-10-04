@@ -7,6 +7,8 @@ import { Users } from './pages/Users';
 import { Campuses } from './pages/Campuses';
 import { Classrooms } from './pages/Classrooms';
 import { Types } from './pages/Types';
+import { Devices } from './pages/Devices';
+import { Requests } from './pages/Requests';
 
 function App() {
 
@@ -21,8 +23,8 @@ function App() {
         <Route path='/admin/campuses' element={<Campuses/>}/>
         <Route path='/admin/classrooms' element={<Classrooms/>}/>
         <Route path='/admin/types' element={<Types/>}/>
-        <Route path='/admin/devices' element={<h1>Devices</h1>}/>
-        <Route path='/admin/requests' element={<h1>Requests</h1>}/>
+        <Route path='/admin/devices' element={<Devices/>}/>
+        <Route path='/admin/requests' element={<Requests/>}/>
         <Route path='/*' element={<h1>404 not found</h1>}/>
       </Routes>
       </BrowserRouter>

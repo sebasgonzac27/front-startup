@@ -40,7 +40,7 @@ export function Dashboard(){
           </Link>
         </Col>
         <Col>
-        <Link to='/campuses' className='text-decoration-none'>
+        <Link to='/admin/campuses' className='text-decoration-none'>
           <Card>
             <Card.Body>
             <box-icon name='buildings' type='solid' ></box-icon>
@@ -51,7 +51,7 @@ export function Dashboard(){
           </Link>
         </Col>
         <Col>
-        <Link to='/classrooms' className='text-decoration-none'>
+        <Link to='/admin/classrooms' className='text-decoration-none'>
           <Card>
             <Card.Body>
             <box-icon name='graduation' type='solid' ></box-icon>
@@ -62,7 +62,7 @@ export function Dashboard(){
           </Link>
         </Col>
         <Col>
-        <Link to='/types' className='text-decoration-none'>
+        <Link to='/admin/types' className='text-decoration-none'>
           <Card>
             <Card.Body>
             <box-icon name='devices' type='solid' ></box-icon>
@@ -73,7 +73,7 @@ export function Dashboard(){
           </Link>
         </Col>
         <Col>
-        <Link to='/devices' className='text-decoration-none'>
+        <Link to='/admin/devices' className='text-decoration-none'>
           <Card>
             <Card.Body>
             <box-icon name='headphone' ></box-icon>
@@ -84,7 +84,7 @@ export function Dashboard(){
           </Link>
         </Col>
         <Col>
-        <Link to='/requests' className='text-decoration-none'>
+        <Link to='/admin/requests' className='text-decoration-none'>
           <Card>
             <Card.Body>
             <box-icon name='notepad' type='solid' ></box-icon>
