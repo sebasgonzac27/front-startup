@@ -4,6 +4,9 @@ import { Login } from './pages/Login';
 import { Registration } from './pages/Registration';
 import { Dashboard } from './pages/Dashboard';
 import { Users } from './pages/Users';
+import { ClientView } from './pages/ClientView';
+import { ClientRequest } from './pages/ClientRequest';
+import { DashboardRequest } from './pages/DashboardRequest';
 import { Campuses } from './pages/Campuses';
 import { Classrooms } from './pages/Classrooms';
 import { Types } from './pages/Types';
@@ -25,6 +28,9 @@ function App() {
         <Route path='/admin/types' element={<Types/>}/>
         <Route path='/admin/devices' element={<Devices/>}/>
         <Route path='/admin/requests' element={<Requests/>}/>
+        <Route path='/client' element={<ClientView/>}/>
+        <Route path='/client/requests' element={<DashboardRequest/>}/>
+        <Route path='/client/create-request' element={<ClientRequest/>}/>
         <Route path='/*' element={<h1>404 not found</h1>}/>
       </Routes>
       </BrowserRouter>
