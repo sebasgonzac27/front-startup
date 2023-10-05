@@ -12,25 +12,39 @@ import { Classrooms } from './pages/Classrooms';
 import { Types } from './pages/Types';
 import { Devices } from './pages/Devices';
 import { Requests } from './pages/Requests';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { getKey } from './utils/storage';
 
 function App() {
-
+  const user = getKey('user')
   return (
     <>
       <BrowserRouter>
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Registration/>}/>
-        <Route path='/admin' element={<Dashboard/>}/>
-        <Route path='/admin/users' element={<Users/>}/>
-        <Route path='/admin/campuses' element={<Campuses/>}/>
-        <Route path='/admin/classrooms' element={<Classrooms/>}/>
-        <Route path='/admin/types' element={<Types/>}/>
-        <Route path='/admin/devices' element={<Devices/>}/>
-        <Route path='/admin/requests' element={<Requests/>}/>
-        <Route path='/client' element={<ClientView/>}/>
-        <Route path='/client/requests' element={<DashboardRequest/>}/>
-        <Route path='/client/create-request' element={<ClientRequest/>}/>
+        <Route
+          path='/'
+          element={
+          <ProtectedRoute isAllowed={!!user} redirectTo='/login'>
+            {user?.Role === 'Administrator' ? <Dashboard/> : <ClientView/>}
+          </ProtectedRoute>
+          }
+        />
+        <Route element={<ProtectedRoute isAllowed={!!user} redirectTo='/login'/>}>
+          <Route element={<ProtectedRoute isAllowed={user?.Role === 'Administrator'} redirectTo='/login'/>}>
+            <Route path='/admin' element={<Dashboard/>}/>
+            <Route path='/admin/users' element={<Users/>}/>
+            <Route path='/admin/campuses' element={<Campuses/>}/>
+            <Route path='/admin/classrooms' element={<Classrooms/>}/>
+            <Route path='/admin/types' element={<Types/>}/>
+            <Route path='/admin/devices' element={<Devices/>}/>
+            <Route path='/admin/requests' element={<Requests/>}/>
+          </Route>
+          <Route path='/client' element={<ClientView/>}/>
+          <Route path='/client/requests' element={<DashboardRequest/>}/>
+          <Route path='/client/create-request' element={<ClientRequest/>}/>
+        </Route>
         <Route path='/*' element={<h1>404 not found</h1>}/>
       </Routes>
       </BrowserRouter>
