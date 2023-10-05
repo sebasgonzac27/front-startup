@@ -1,25 +1,25 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { deleteKey } from '../utils/storage'
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/useUser";
 
-export function Header() {
+export function Header({brand,routes}) {
     const navigate = useNavigate()
+    const {setUser} = useContext(UserContext)
     return (
         <Navbar bg="danger" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="/admin" className="fw-bold">AudioVisual</Navbar.Brand>
+          <Navbar.Brand href={brand.href} className="fw-bold">{brand.name}</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/admin/users">Usuarios</Nav.Link>
-              <Nav.Link href="/admin/campuses">Campus</Nav.Link>
-              <Nav.Link href="/admin/classrooms">Salones</Nav.Link>
-              <Nav.Link href="/admin/types">Categorías</Nav.Link>
-              <Nav.Link href="/admin/devices">Equipos</Nav.Link>
-              <Nav.Link href="/admin/requests">Solicitudes</Nav.Link>
+              {routes.map((route, index) => (
+                <Nav.Link key={index} href={route.href}>{route.name}</Nav.Link>
+              ))}
             </Nav>
             <Nav>
-              <Nav.Link onClick={() => {deleteKey('auth'); navigate('/login')}}>Cerrar Sesión</Nav.Link>
+              <Nav.Link onClick={() => {setUser(null),deleteKey('user'); navigate('/login')}}>Cerrar Sesión</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
