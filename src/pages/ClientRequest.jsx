@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { Client } from '../layouts/Client';
 import Select from 'react-select';
+import { useContext } from 'react';
+import { UserContext } from '../context/useUser';
+import { launchAlert } from '../utils/alerts';
 
 export function ClientRequest() {
   const [request, setRequest] = useState({
@@ -13,9 +16,7 @@ export function ClientRequest() {
     ProgramID: '',
   });
 
-  const [tuTokenJWT, setTuTokenJWT] = useState(
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6IjAzRjY0Rjg5LTVBNjAtMTFFRS1CNTk3LURDODVERUIxQkU0NCIsIkZ1bGxOYW1lIjoiQ2FybG9zIERpbmFtbyIsIkVtYWlsIjoiY2FybG9zLkRpbmFtb0Bjb3JyZW91bml2YWxsZS5lZHUuY28iLCJQYXNzd29yZCI6IiQyYiQxMiRYNjZ3czdvbXlnV1ZZMU8zMG5TWG8uYlNyVjJVc2tWWmdyNkoxZEwxS0tYaDRzM3E5bWxwYSIsIlBob25lIjoiMTIzMTQ0NDU2NTY3IiwiUm9sZSI6IlN0dWRlbnQiLCJpYXQiOjE2OTY0NDQ1OTV9.5oknBke_uH1yh_7EDa6-UFOj4r4jh_OLSqlv5ZdPKyA'
-      );
+ const {user} = useContext(UserContext)
 
   const [classrooms, setClassrooms] = useState([]);
   const [programs, setPrograms] = useState([]);
@@ -60,7 +61,7 @@ export function ClientRequest() {
     e.preventDefault();
   
     // Obtener el ID del usuario del token JWT
-    const userIDFromToken = obtenerIDDelToken(tuTokenJWT);
+    const userIDFromToken = obtenerIDDelToken(user.token);
   
     // Verificar si selectedClassroom y selectedProgram no son nulos
     if (selectedClassroom && selectedProgram) {
@@ -75,11 +76,15 @@ export function ClientRequest() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${tuTokenJWT}`,
+          Authorization: `Bearer ${user.token}`,
         },
         body: JSON.stringify(requestData),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if(response.ok)
+          launchAlert('Solicitud satisfactoria', 'Su solicitud se ha realizado con éxito', "success")
+          return response.json()
+        })
         .then((data) => {
           console.log('Solicitud creada con éxito:', data);
         })
