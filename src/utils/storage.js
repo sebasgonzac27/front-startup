@@ -4,7 +4,7 @@ export function getKey(key){
 }
 
 export function setKey(key, val){
-    window.localStorage.setItem(key, val)
+    window.localStorage.setItem(key, JSON.stringify(val))
 }
 
 export function deleteKey(key){
