@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Table } from 'react-bootstrap';
 import { Client } from '../layouts/Client';
 import { format } from 'date-fns';
