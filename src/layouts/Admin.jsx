@@ -4,7 +4,7 @@ export function Admin({children}) {
     return(
         <>
         <Header
-            brandName={{name: 'AudioVisual Admin', href:'/admin'}}
+            brand={{name: 'AudioVisual Admin', href:'/admin'}}
             routes={[{name: 'Usuarios', href:'/admin/users'},
                     {name:'Campus', href:'/admin/campuses'},
                     {name: 'Salones', href:'/admin/classrooms'},

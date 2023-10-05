@@ -13,10 +13,10 @@ import { Types } from './pages/Types';
 import { Devices } from './pages/Devices';
 import { Requests } from './pages/Requests';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { getKey } from './utils/storage';
+import { useUser } from './utils/useUser';
 
 function App() {
-  const user = getKey('user')
+  const {user}  = useUser()
   return (
     <>
       <BrowserRouter>

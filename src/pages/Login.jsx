@@ -41,7 +41,7 @@ export function Login() {
         if(response.ok){
           const {body} = await response.json()
           setKey('user', body)
-          navigate(body.Role === 'Administrator' ? '/admin' : '/client')
+          navigate('/')
         } else {
           const dataError = await response.json()
           throw new Error(dataError.body)
