@@ -3,14 +3,15 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LogoUV from "../assets/img/logo.png"
 import { launchAlert } from "../utils/alerts";
-//import { useUser } from "../context/useUser";
 import { setKey } from "../utils/storage";
+import { useContext } from "react";
+import { UserContext } from "../context/useUser";
 
 export function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null); // Estado para gestionar el mensaje de error
-    //const {user,setUser} = useUser()
+    const {setUser} = useContext(UserContext)
     const navigate = useNavigate()
 
     const handleEmailChange = (e) => {
@@ -41,6 +42,7 @@ export function Login() {
         if(response.ok){
           const {body} = await response.json()
           setKey('user', body)
+          setUser(body)
           navigate('/')
         } else {
           const dataError = await response.json()

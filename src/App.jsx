@@ -13,10 +13,11 @@ import { Types } from './pages/Types';
 import { Devices } from './pages/Devices';
 import { Requests } from './pages/Requests';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { useUser } from './utils/useUser';
+import { useContext } from 'react';
+import { UserContext } from './context/useUser';
 
 function App() {
-  const {user}  = useUser()
+  const {user} = useContext(UserContext)
   return (
     <>
       <BrowserRouter>
@@ -32,7 +33,7 @@ function App() {
           }
         />
         <Route element={<ProtectedRoute isAllowed={!!user} redirectTo='/login'/>}>
-          <Route element={<ProtectedRoute isAllowed={user?.Role === 'Administrator'} redirectTo='/login'/>}>
+          <Route element={<ProtectedRoute isAllowed={!!user && user?.Role === 'Administrator'} redirectTo='/login'/>}>
             <Route path='/admin' element={<Dashboard/>}/>
             <Route path='/admin/users' element={<Users/>}/>
             <Route path='/admin/campuses' element={<Campuses/>}/>

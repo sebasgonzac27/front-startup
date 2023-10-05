@@ -1,9 +1,12 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { deleteKey } from '../utils/storage'
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/useUser";
 
 export function Header({brand,routes}) {
     const navigate = useNavigate()
+    const {setUser} = useContext(UserContext)
     return (
         <Navbar bg="danger" variant="dark" expand="lg">
         <Container>
@@ -16,7 +19,7 @@ export function Header({brand,routes}) {
               ))}
             </Nav>
             <Nav>
-              <Nav.Link onClick={() => {deleteKey('user'); navigate('/login')}}>Cerrar Sesión</Nav.Link>
+              <Nav.Link onClick={() => {setUser(null),deleteKey('user'); navigate('/login')}}>Cerrar Sesión</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
